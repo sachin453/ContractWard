@@ -2,7 +2,7 @@ from turtle import end_fill
 import pandas as pd
 
 matrix_data = []
-matrix_data = pd.DataFrame(matrix_data, columns=["file_name", "vulnerability"])
+matrix_data = pd.DataFrame(matrix_data, columns=["file_name", "vulnerability","code"])
 
 
 # extract smart contracts from dataset_Integeroverflow.txt
@@ -14,13 +14,10 @@ temp_smart_contract = ""
 for i in range(0, length_of_bulk_code-2, 1):
     if(smart_contract_data_string[i] != '-'):
         if(smart_contract_data_string[i+1] == '-' and smart_contract_data_string[i+2] == '-'):
-            new_file_name = "smart_contracts/SmartContract_No" + \
-                str(no_of_contracts)
-            new_file_created = open(new_file_name+".sol", 'w')
-            new_file_created.write(temp_smart_contract)
-            temp_smart_contract = ""
+            temp_smart_contract1 = temp_smart_contract
+            temp_smart_contract=""
             matrix_data.loc[len(matrix_data.index)] = [
-                "SmartContract_No"+str(no_of_contracts)+".sol", "Integeroverflow"]
+                "SmartContract_No"+str(no_of_contracts)+".sol", "Integeroverflow",temp_smart_contract1]
             no_of_contracts = no_of_contracts+1
         temp_smart_contract = temp_smart_contract+smart_contract_data_string[i]
     if(smart_contract_data_string[i] == '-' and smart_contract_data_string[i+1] == '-'):
@@ -38,13 +35,10 @@ temp_smart_contract = ""
 for i in range(0, length_of_bulk_code-2, 1):
     if(smart_contract_data_string[i] != '-'):
         if(smart_contract_data_string[i+1] == '-' and smart_contract_data_string[i+2] == '-'):
-            new_file_name = "smart_contracts/SmartContract_No" + \
-                str(no_of_contracts)
-            new_file_created = open(new_file_name+".sol", 'w')
-            new_file_created.write(temp_smart_contract)
-            temp_smart_contract = ""
+            temp_smart_contract1 = temp_smart_contract
+            temp_smart_contract=""
             matrix_data.loc[len(matrix_data.index)] = [
-                "SmartContract_No"+str(no_of_contracts)+".sol", "delegate"]
+                "SmartContract_No"+str(no_of_contracts)+".sol", "delegate",temp_smart_contract1]
             no_of_contracts = no_of_contracts+1
         temp_smart_contract = temp_smart_contract+smart_contract_data_string[i]
     if(smart_contract_data_string[i] == '-' and smart_contract_data_string[i+1] == '-'):
@@ -62,13 +56,10 @@ temp_smart_contract = ""
 for i in range(0, length_of_bulk_code-2, 1):
     if(smart_contract_data_string[i] != '-'):
         if(smart_contract_data_string[i+1] == '-' and smart_contract_data_string[i+2] == '-'):
-            new_file_name = "smart_contracts/SmartContract_No" + \
-                str(no_of_contracts)
-            new_file_created = open(new_file_name+".sol", 'w')
-            new_file_created.write(temp_smart_contract)
-            temp_smart_contract = ""
+            temp_smart_contract1 = temp_smart_contract
+            temp_smart_contract=""
             matrix_data.loc[len(matrix_data.index)] = [
-                "SmartContract_No"+str(no_of_contracts)+".sol", "integer_big"]
+                "SmartContract_No"+str(no_of_contracts)+".sol", "integer_big",temp_smart_contract1]
             no_of_contracts = no_of_contracts+1
         temp_smart_contract = temp_smart_contract+smart_contract_data_string[i]
     if(smart_contract_data_string[i] == '-' and smart_contract_data_string[i+1] == '-'):
@@ -86,13 +77,10 @@ temp_smart_contract = ""
 for i in range(0, length_of_bulk_code-2, 1):
     if(smart_contract_data_string[i] != '-'):
         if(smart_contract_data_string[i+1] == '-' and smart_contract_data_string[i+2] == '-'):
-            new_file_name = "smart_contracts/SmartContract_No" + \
-                str(no_of_contracts)
-            new_file_created = open(new_file_name+".sol", 'w')
-            new_file_created.write(temp_smart_contract)
-            temp_smart_contract = ""
+            temp_smart_contract1 = temp_smart_contract
+            temp_smart_contract=""
             matrix_data.loc[len(matrix_data.index)] = [
-                "SmartContract_No"+str(no_of_contracts)+".sol", "IntegerUnderFlow"]
+                "SmartContract_No"+str(no_of_contracts)+".sol", "IntegerUnderFlow",temp_smart_contract1]
             no_of_contracts = no_of_contracts+1
         temp_smart_contract = temp_smart_contract+smart_contract_data_string[i]
     if(smart_contract_data_string[i] == '-' and smart_contract_data_string[i+1] == '-'):
@@ -110,13 +98,10 @@ temp_smart_contract = ""
 for i in range(0, length_of_bulk_code-2, 1):
     if(smart_contract_data_string[i] != '-'):
         if(smart_contract_data_string[i+1] == '-' and smart_contract_data_string[i+2] == '-'):
-            new_file_name = "smart_contracts/SmartContract_No" + \
-                str(no_of_contracts)
-            new_file_created = open(new_file_name+".sol", 'w')
-            new_file_created.write(temp_smart_contract)
-            temp_smart_contract = ""
+            temp_smart_contract1 = temp_smart_contract
+            temp_smart_contract=""
             matrix_data.loc[len(matrix_data.index)] = [
-                "SmartContract_No"+str(no_of_contracts)+".sol", "reentry"]
+                "SmartContract_No"+str(no_of_contracts)+".sol", "reentry",temp_smart_contract1]
             no_of_contracts = no_of_contracts+1
         temp_smart_contract = temp_smart_contract+smart_contract_data_string[i]
     if(smart_contract_data_string[i] == '-' and smart_contract_data_string[i+1] == '-'):
@@ -134,13 +119,10 @@ temp_smart_contract = ""
 for i in range(0, length_of_bulk_code-2, 1):
     if(smart_contract_data_string[i] != '-'):
         if(smart_contract_data_string[i+1] == '-' and smart_contract_data_string[i+2] == '-'):
-            new_file_name = "smart_contracts/SmartContract_No" + \
-                str(no_of_contracts)
-            new_file_created = open(new_file_name+".sol", 'w')
-            new_file_created.write(temp_smart_contract)
-            temp_smart_contract = ""
+            temp_smart_contract1 = temp_smart_contract
+            temp_smart_contract=""
             matrix_data.loc[len(matrix_data.index)] = [
-                "SmartContract_No"+str(no_of_contracts)+".sol", "Timestamp"]
+                "SmartContract_No"+str(no_of_contracts)+".sol", "Timestamp",temp_smart_contract1]
             no_of_contracts = no_of_contracts+1
         temp_smart_contract = temp_smart_contract+smart_contract_data_string[i]
     if(smart_contract_data_string[i] == '-' and smart_contract_data_string[i+1] == '-'):
