@@ -17,53 +17,58 @@
 # so, there is a need of increasing samples in class A, and for that we are going to use SmoteTomek
 
 
-
+from imblearn.under_sampling import TomekLinks
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split
 import pandas as pd
 
-complete_dataset=pd.read_csv('Labels/complete_dataset.csv')
-complete_dataset=complete_dataset.drop(['Unnamed: 0'],axis=1)
-y=complete_dataset[['0.1']]
-X=complete_dataset.drop(['0.1'],axis=1)
-y.columns=['yes_no']
-from sklearn.model_selection import train_test_split
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=.2)
+complete_dataset = pd.read_csv('Labels/complete_dataset.csv')
+complete_dataset = complete_dataset.drop(['Unnamed: 0'], axis=1)
+y = complete_dataset[['0.1']]
+X = complete_dataset.drop(['0.1'], axis=1)
+y.columns = ['yes_no']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.2)
 
 
-
-train_data=pd.concat([X_train,y_train],axis=1)
-train_data_minority=train_data[train_data['yes_no']==1]
-train_data_majority=train_data[train_data['yes_no']==0]
-y_train_minority=train_data_minority['yes_no']
-y_train_minority=pd.DataFrame(y_train_minority)
-X_train_minority=train_data_minority.drop(['yes_no'],axis=1)
-y_train_majority=train_data_majority['yes_no']
-y_train_majority=pd.DataFrame(y_train_majority)
-X_train_majority=train_data_majority.drop(['yes_no'],axis=1)
-print('shape of overall dataset =',complete_dataset.shape)
-print('shape of X =',X.shape)
-print('shape of y =',y.shape)
-print('shape of X_train =',X_train.shape)
-print('shape of y_train =',y_train.shape)
-print('shape of X_train_minority =',X_train_minority.shape)
-print('shape of y_train_minority =',y_train_minority.shape)
-print('shape of X_train_majority =',X_train_majority.shape)
-print('shape of y_train_majority =',y_train_majority.shape)
+train_data = pd.concat([X_train, y_train], axis=1)
+train_data_minority = train_data[train_data['yes_no'] == 1]
+train_data_majority = train_data[train_data['yes_no'] == 0]
+y_train_minority = train_data_minority['yes_no']
+y_train_minority = pd.DataFrame(y_train_minority)
+X_train_minority = train_data_minority.drop(['yes_no'], axis=1)
+y_train_majority = train_data_majority['yes_no']
+y_train_majority = pd.DataFrame(y_train_majority)
+X_train_majority = train_data_majority.drop(['yes_no'], axis=1)
+print('shape of overall dataset =', complete_dataset.shape)
+print('shape of X =', X.shape)
+print('shape of y =', y.shape)
+print('shape of X_train =', X_train.shape)
+print('shape of y_train =', y_train.shape)
+print('shape of X_train_minority =', X_train_minority.shape)
+print('shape of y_train_minority =', y_train_minority.shape)
+print('shape of X_train_majority =', X_train_majority.shape)
+print('shape of y_train_majority =', y_train_majority.shape)
+print('minority : majority before Smote =', len(
+    y_train[y_train['yes_no'] == 1]), ':', len(y_train[y_train['yes_no'] == 0]))
 
 
 # applying Smote technique on training dataset
 
 
-from imblearn.over_sampling import SMOTE
 smote = SMOTE(sampling_strategy='minority')
-X_train_sm,y_train_sm=smote.fit_resample(X_train,y_train)
-X_sm=pd.DataFrame(X_train_sm)
-y_sm=pd.DataFrame(y_train_sm)
-print('minority : majority before Smote =',len(y_train[y_train['yes_no']==1]),':',len(y_train[y_train['yes_no']==0]))
-print('minority : majority after Smote =',len(y_train_sm[y_train_sm['yes_no']==1]),':',len(y_train_sm[y_train_sm['yes_no']==0]))
+X_train_sm, y_train_sm = smote.fit_resample(X_train, y_train)
+X_train_sm = pd.DataFrame(X_train_sm)
+y_train_sm = pd.DataFrame(y_train_sm)
+print('minority : majority after Smote =', len(
+    y_train_sm[y_train_sm['yes_no'] == 1]), ':', len(y_train_sm[y_train_sm['yes_no'] == 0]))
 
 
+# using Tomek links to undersample training dataset
 
-
-
+tomek_model = TomekLinks(sampling_strategy='all')
+X_train_sm_tmk, y_train_sm_tmk = tomek_model.fit_resample(
+    X_train_sm, y_train_sm)
+print('minority : majority after tomek =', len(
+    y_train_sm_tmk[y_train_sm_tmk['yes_no'] == 1]), ':', len(y_train_sm_tmk[y_train_sm_tmk['yes_no'] == 0]))
 
 
