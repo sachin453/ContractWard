@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 X = np.random.randint(0,10,(1000,1619))
 X=X/10
-y1=np.random.randint(1,2,(900,1))
-y2=np.random.randint(0,1,(100,1))
+y1=np.random.randint(0,1,(900,1))
+y2=np.random.randint(1,2,(100,1))
 y1=pd.DataFrame(y1)
 y1.index=range(0,900,1)
 y2=pd.DataFrame(y2)
